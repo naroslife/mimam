@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mimam Collection - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #ffffff;
+            color: #000000;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-x: hidden;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Logo styles */
+        .logo {
+            width: 400px;
+            height: auto;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .logo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Coming soon text */
+        .coming-soon {
+            font-size: 1.5rem;
+            font-weight: 200;
+            letter-spacing: 0.25rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        .subtitle {
+            font-size: 0.75rem;
+            font-weight: 300;
+            letter-spacing: 0.12rem;
+            text-transform: uppercase;
+            color: #666;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid #f0f0f0;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.6s forwards;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .email {
+            font-size: 0.85rem;
+            letter-spacing: 0.05rem;
+            margin-bottom: 15px;
+        }
+
+        .email a {
+            color: #000;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .email a:hover {
+            opacity: 0.6;
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            letter-spacing: 0.05rem;
+            color: #999;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .logo {
+                width: 300px;
+                margin-bottom: 40px;
+            }
+
+            .coming-soon {
+                font-size: 1.3rem;
+                letter-spacing: 0.2rem;
+            }
+
+            .subtitle {
+                font-size: 0.7rem;
+            }
+
+            .email {
+                font-size: 0.8rem;
+            }
+
+            .copyright {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                width: 220px;
+                margin-bottom: 30px;
+            }
+
+            .coming-soon {
+                font-size: 1.1rem;
+                letter-spacing: 0.15rem;
+            }
+            
+            .subtitle {
+                font-size: 0.65rem;
+                letter-spacing: 0.1rem;
+            }
+        }
+
+        /* Loading animation */
+        .line-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #000;
+            transform-origin: left;
+            animation: lineLoad 1.5s ease forwards;
+            z-index: 1000;
+        }
+
+        @keyframes lineLoad {
+            0% {
+                transform: scaleX(0);
+            }
+            50% {
+                transform: scaleX(1);
+            }
+            100% {
+                transform: scaleX(0);
+                transform-origin: right;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading animation -->
+    <div class="line-loader"></div>
+
+    <!-- Main container -->
+    <div class="container">
+        <div class="logo">
+            <img src="images/logo_full.jpg" alt="mimam Collection" />
+        </div>
+        
+        <h1 class="coming-soon">Coming Soon</h1>
+        <p class="subtitle">Fashion Redefined</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="email">
+                <a href="mailto:mimam@mimamcollection.com">mimam@mimamcollection.com</a>
+            </div>
+            <div class="copyright">
+                © <span id="year"></span> mimam Collection. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year for copyright
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Remove loading line after animation completes
+        setTimeout(() => {
+            const loader = document.querySelector('.line-loader');
+            if (loader) {
+                loader.style.display = 'none';
+            }
+        }, 1500);
+
+        // Optional: Add subtle parallax effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const logo = document.querySelector('.logo');
+            const x = (window.innerWidth / 2 - e.pageX) / 100;
+            const y = (window.innerHeight / 2 - e.pageY) / 100;
+            
+            if (logo) {
+                logo.style.transform = `translate(${x}px, ${y}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
