@@ -20,6 +20,38 @@
             flex-direction: column;
             justify-content: space-between;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background image with overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* REPLACE 'background.jpg' WITH YOUR 1536x1024 IMAGE PATH */
+            background-image: url('images/background3.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            z-index: -2;
+        }
+
+        /* Semi-transparent overlay for better text readability */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.85);
+            /* Adjust opacity (0.85) lower for more background visibility, 
+               higher for better logo contrast with multiply blend mode */
+            z-index: -1;
         }
 
         .container {
@@ -30,6 +62,8 @@
             align-items: center;
             padding: 20px;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         /* Logo styles */
@@ -40,12 +74,23 @@
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.8s ease forwards;
+            /* Optional: Add a subtle white background behind logo for contrast */
+            /* background: rgba(255, 255, 255, 0.5);
+            padding: 20px;
+            border-radius: 10px; */
         }
 
         .logo img {
             width: 100%;
             height: auto;
             display: block;
+            mix-blend-mode: multiply;
+            /* This removes the white background, keeping only the black logo */
+            /* Alternative blend modes you can try:
+               - darken: similar to multiply, keeps darker colors
+               - color-burn: creates a more intense blend
+               - normal: default, no blending (original look)
+            */
         }
 
         /* Coming soon text */
@@ -75,9 +120,14 @@
         footer {
             padding: 30px 20px;
             text-align: center;
-            border-top: 1px solid #f0f0f0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             opacity: 0;
             animation: fadeIn 1s ease 0.6s forwards;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-content {
@@ -160,6 +210,11 @@
             .subtitle {
                 font-size: 0.65rem;
                 letter-spacing: 0.1rem;
+            }
+
+            /* Optimize background for mobile */
+            body::before {
+                background-attachment: scroll;
             }
         }
 
